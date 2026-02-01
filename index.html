@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hey Radhaaaaa🥹</title>
     <style>
         :root {
@@ -13,7 +13,6 @@
 
         * {
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Removes blue flash on mobile taps */
         }
 
         body {
@@ -25,7 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             width: 100vw;
         }
 
@@ -33,7 +32,7 @@
         .photo-reel {
             position: fixed;
             top: 0;
-            width: 15vw; /* Desktop width */
+            width: 15vw;
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -42,8 +41,8 @@
             z-index: 1;
         }
 
-        .left-reel { left: 5px; }
-        .right-reel { right: 5px; }
+        .left-reel { left: 10px; }
+        .right-reel { right: 10px; }
 
         .strip {
             display: flex;
@@ -53,11 +52,9 @@
 
         .strip img {
             width: 100%;
-            aspect-ratio: 3/4; /* Keeps photos consistent */
-            object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 2px solid white;
+            border: 3px solid white;
         }
 
         @keyframes scrollUp {
@@ -76,41 +73,39 @@
         /* --- MAIN CONTAINER --- */
         #container {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             z-index: 10;
-            width: 85%;
-            max-width: 420px;
+            width: 90%;
+            max-width: 450px;
             text-align: center;
             position: relative;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
-            scrollbar-width: none; /* Hide scrollbar for clean look */
         }
-        #container::-webkit-scrollbar { display: none; }
 
-        h1 { color: var(--dark-pink); margin-top: 0; font-size: 1.6rem; }
-        p { color: #555; line-height: 1.6; font-size: 0.95rem; text-align: justify; }
-        h3 { color: #333; margin: 15px 0; font-size: 1.1rem; }
+        h1 { color: var(--dark-pink); margin-top: 0; font-size: 1.8rem; }
+        p { color: #555; line-height: 1.6; font-size: 1rem; }
+        h3 { color: #333; margin: 20px 0; }
 
         /* --- BUTTONS --- */
         .btn-container {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            min-height: 60px;
+            gap: 20px; /* Space between Yes and No */
+            min-height: 70px;
         }
 
         button {
-            padding: 12px 24px;
-            font-size: 1rem;
+            padding: 12px 28px;
+            font-size: 1.1rem;
             border: none;
-            border-radius: 50px; /* Modern rounded look */
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: transform 0.2s, background-color 0.3s;
             font-weight: bold;
         }
 
@@ -124,25 +119,25 @@
             background-color: #adb5bd;
             color: white;
             white-space: nowrap;
-            z-index: 999;
+            z-index: 999; /* Ensures it stays above everything when moving */
         }
 
         /* --- PAGE TRANSITIONS --- */
         #result, #final-page {
             display: none;
-            animation: fadeIn 0.8s ease-out;
+            animation: fadeIn 1s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .celebration-gif {
             width: 100%;
-            max-width: 220px;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            max-width: 250px;
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
 
         /* --- DECORATIONS --- */
@@ -161,14 +156,10 @@
             100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- SPECIFIC MOBILE OVERRIDES --- */
         @media (max-width: 600px) {
-            .photo-reel { width: 10vw; opacity: 0.4; } /* Subtle side presence */
-            h1 { font-size: 1.4rem; }
-            p { font-size: 0.9rem; }
-            #container { width: 90%; padding: 20px; }
-            .btn-container { gap: 10px; }
-            button { padding: 10px 20px; font-size: 0.9rem; }
+            .photo-reel { width: 12vw; opacity: 0.5; }
+            h1 { font-size: 1.5rem; }
+            #container { padding: 20px; }
         }
     </style>
 </head>
@@ -187,7 +178,7 @@
     <div id="container">
         <div id="question-ui">
             <h1>Hiiii myy cutuu❤️❤️</h1>
-            <p style="text-align: center;">To my very veryyy special person, my Girliee🥺</p>
+            <p>To my very veryyy special person, my Girliee🥺</p>
             <h3>Will you be my Valentine, Radhaaa?🌹</h3>
             <div class="btn-container">
                 <button id="yesBtn" onclick="showLove()">Yes!</button>
@@ -197,7 +188,7 @@
 
         <div id="result">
             <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnEzOTk0djcxcWZ0MGd0MGlxazYzdTZlenFjaHV1MjFna2xqdnRmcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1JmGiBtqTuehfYxuy9/giphy.gif" class="celebration-gif" alt="Happy Dance">
-            <h1>Obviously you had to say YES😈😈</h1>
+            <h1>Obviously you had to say YES😈😈 but anyways🫠</h1>
             <p>
                 From the moment we first met, you've brought so much light into my lifeee🥹🥹, like we were made for each otherr🥹, Your smile is my favoriteee thing in the worldddd🤗🤗and your everything 🥺🥺your eyess, yourr voicee your hairrr🫶🫶🫶and I can't imagine livee my whole life without you by my side🥺🥺🫶♥️♥️🫂🫂🫂Thankkk youuuu sooo muchhh my darlingg🥹🥹🥰🥰😘😘😘for being you and for making every day feel like a celebration. I promise to always cherish ourr relation and make ourselves better and be with youu in every aspect of life🥹🥹🫶🫶♥️♥️🥰🥰🫂🫂🫂✨✨✨✨✨
             </p>
@@ -214,17 +205,15 @@
     </div>
 
     <script>
-        // List your photo names here
         const myPhotos = ['gt.jpeg', 'kgyjv.jpeg', 'pic2.jpeg', 'pic3.jpeg', 'pic4.jpeg', 'pic5.jpeg', 'pic6.jpeg', 'pic7.jpeg'];
 
         function loadReels() {
             const leftStrip = document.getElementById('leftStrip');
             const rightStrip = document.getElementById('rightStrip');
-            const fullList = [...myPhotos, ...myPhotos]; // Double for seamless loop
+            const fullList = [...myPhotos, ...myPhotos];
             fullList.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = "Memory";
                 leftStrip.appendChild(img.cloneNode());
                 rightStrip.appendChild(img);
             });
@@ -233,47 +222,44 @@
 
         function moveButton() {
             const noBtn = document.getElementById('noBtn');
+            
+            // On first interaction, switch to fixed positioning so it can jump anywhere
             noBtn.style.position = 'fixed';
             
-            const btnWidth = noBtn.offsetWidth;
-            const btnHeight = noBtn.offsetHeight;
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
             
-            // Ensures button stays within safe screen margins
-            const maxX = window.innerWidth - btnWidth - 20;
-            const maxY = window.innerHeight - btnHeight - 20;
-            
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
             
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
         }
 
         function showLove() {
-            const song = document.getElementById('mySong');
-            song.play().catch(() => console.log("Music play blocked by browser policy."));
-
+            document.getElementById('mySong').play();
             document.getElementById('question-ui').style.display = 'none';
             document.getElementById('result').style.display = 'block';
-            for(let i=0; i<15; i++) setTimeout(createHeart, i * 150);
+            for(let i=0; i<15; i++) setTimeout(createHeart, i * 100);
         }
 
         function showFinal() {
             document.getElementById('result').style.display = 'none';
             document.getElementById('final-page').style.display = 'block';
-            document.getElementById('container').scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('container').scrollTop = 0;
         }
 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 95 + 'vw';
+            heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 400);
     </script>
 </body>
 </html>
