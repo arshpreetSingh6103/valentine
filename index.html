@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Radhaaaaa🥹</title>
+    <style>
+        :root {
+            --pink: #ff4d6d;
+            --dark-pink: #d63384;
+            --light-pink: #ffe6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- SIDE PHOTO REELS --- */
+        .photo-reel {
+            position: fixed;
+            top: 0;
+            width: 15vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1;
+        }
+
+        .left-reel { left: 10px; }
+        .right-reel { right: 10px; }
+
+        .strip {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .strip img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(0); }
+        }
+
+        .left-reel .strip { animation: scrollUp 25s linear infinite; }
+        .right-reel .strip { animation: scrollDown 25s linear infinite; }
+
+        /* --- MAIN CONTAINER --- */
+        #container {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            z-index: 10;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        h1 { color: var(--dark-pink); margin-top: 0; font-size: 1.8rem; }
+        p { color: #555; line-height: 1.6; font-size: 1rem; }
+        h3 { color: #333; margin: 20px 0; }
+
+        /* --- BUTTONS --- */
+        .btn-container {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between Yes and No */
+            min-height: 70px;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #yesBtn, .nextBtn {
+            background-color: var(--pink);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        #noBtn {
+            background-color: #adb5bd;
+            color: white;
+            white-space: nowrap;
+            z-index: 999; /* Ensures it stays above everything when moving */
+        }
+
+        /* --- PAGE TRANSITIONS --- */
+        #result, #final-page {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .celebration-gif {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* --- DECORATIONS --- */
+        .heart {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            top: 100vh;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            .photo-reel { width: 12vw; opacity: 0.5; }
+            h1 { font-size: 1.5rem; }
+            #container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="mySong" src="Pal Jalebi 320 Kbps.mp3" loop></audio>
+
+    <div class="photo-reel left-reel">
+        <div class="strip" id="leftStrip"></div>
+    </div>
+
+    <div class="photo-reel right-reel">
+        <div class="strip" id="rightStrip"></div>
+    </div>
+
+    <div id="container">
+        <div id="question-ui">
+            <h1>Hiiii myy cutuu❤️❤️</h1>
+            <p>To my very veryyy special person, my Girliee🥺</p>
+            <h3>Will you be my Valentine, Radhaaa?🌹</h3>
+            <div class="btn-container">
+                <button id="yesBtn" onclick="showLove()">Yes!</button>
+                <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">No</button>
+            </div>
+        </div>
+
+        <div id="result">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnEzOTk0djcxcWZ0MGd0MGlxazYzdTZlenFjaHV1MjFna2xqdnRmcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1JmGiBtqTuehfYxuy9/giphy.gif" class="celebration-gif" alt="Happy Dance">
+            <h1>Obviously you had to say YES😈😈 but anyways🫠</h1>
+            <p>
+                From the moment we first met, you've brought so much light into my lifeee🥹🥹, like we were made for each otherr🥹, Your smile is my favoriteee thing in the worldddd🤗🤗and your everything 🥺🥺your eyess, yourr voicee your hairrr🫶🫶🫶and I can't imagine livee my whole life without you by my side🥺🥺🫶♥️♥️🫂🫂🫂Thankkk youuuu sooo muchhh my darlingg🥹🥹🥰🥰😘😘😘for being you and for making every day feel like a celebration. I promise to always cherish ourr relation and make ourselves better and be with youu in every aspect of life🥹🥹🫶🫶♥️♥️🥰🥰🫂🫂🫂✨✨✨✨✨
+            </p>
+            <button class="nextBtn" onclick="showFinal()">Wait, one more thing... 🥺</button>
+        </div>
+
+        <div id="final-page">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ODVsN2ZqM3c4eG9mMzBiNzh0dHZpYTNsM3M2M2FxbjVoM3dwMWd0bCZlcD12MV9nbWZzX3NlYXJjaCZjdD1n/yc2pHdAoxVOrJ2m5Ha/giphy.gif" class="celebration-gif">
+            <h1>I Love Youuuuu sooo muchhhh Radhuuuuuu! 🥺🥺❤️</h1>
+            <p id="final-paragraph">
+                I just wanted to say that you are the best thing that ever happened to meeee. Every second with you feels like a dream come true🥺🥺. I love youuuu more than words can ever describe, with you-Forever and always. 🫶♥️🫂✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const myPhotos = ['gt.jpeg', 'kgyjv.jpeg', 'pic2.jpeg', 'pic3.jpeg', 'pic4.jpeg', 'pic5.jpeg', 'pic6.jpeg', 'pic7.jpeg'];
+
+        function loadReels() {
+            const leftStrip = document.getElementById('leftStrip');
+            const rightStrip = document.getElementById('rightStrip');
+            const fullList = [...myPhotos, ...myPhotos];
+            fullList.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                leftStrip.appendChild(img.cloneNode());
+                rightStrip.appendChild(img);
+            });
+        }
+        window.onload = loadReels;
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // On first interaction, switch to fixed positioning so it can jump anywhere
+            noBtn.style.position = 'fixed';
+            
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function showLove() {
+            document.getElementById('mySong').play();
+            document.getElementById('question-ui').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            for(let i=0; i<15; i++) setTimeout(createHeart, i * 100);
+        }
+
+        function showFinal() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('final-page').style.display = 'block';
+            document.getElementById('container').scrollTop = 0;
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
